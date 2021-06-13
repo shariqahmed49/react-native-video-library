@@ -107,5 +107,106 @@ import { VideoPlayer } from 'react-native-video-library'
 |10|[videoProgressOnThumbSlide](#videoProgressOnThumbSlide-)|Function|-|(time) => ()|
 |11|[volumeOnSlide](#volumeOnSlide-)|Function|-|(volume) => ()|
 
+
 ### Description with Examples :
-#### videoTitle : 
+#### videoTitle :
+
+#### videoTitleStyle :
+
+#### videoThumbnailImg : 
+
+#### videoSource : 
+
+#### videoWidth : 
+
+#### videoHeight : 
+
+#### videoLoadingBackgroundColor : 
+
+#### videoLoadingBackgroundOpacity : 
+
+#### videoLoadingSpinnerColor : 
+
+#### videoLoadingSpinnerSize : 
+
+#### videoErrorIconSize : 
+
+#### videoErrorIconColor : 
+
+#### videoErrorTextStyles : 
+
+#### videoErrorText : 
+
+#### resumeVideoFrom : 
+
+#### fastForwardIconSize : 
+
+#### fastForwardIconColor : 
+
+#### astForwardRate : 
+
+#### fastBackwardIconSize : 
+
+#### fastBackwardIconColor : 
+
+#### fastBackwardRate : 
+
+#### pauseIconSize :
+
+#### pauseIconColor : 
+
+#### reloadIconSize : 
+
+#### reloadIconColor : 
+
+#### playIconSize : 
+
+#### playIconColor :
+
+#### volumeIconSize : 
+
+#### volumeIconColor : 
+
+#### videoProgressMaximumTrackTintColor : 
+
+#### videoProgressMinimumTrackTintColor : 
+
+#### videoProgressThumbTintColor : 
+
+#### volumeMaximumTrackTintColor : 
+
+#### volumeMinimumTrackTintColor : 
+
+#### volumeThumbTintColor : 
+
+#### volumeSliderWidth : 
+
+#### volumeOverlayWidth : 
+
+#### volumeOverlayBackgroundColor : 
+
+#### volumeOverlayOpacity : 
+
+#### onVideoPlay : 
+
+#### onVideoPause : 
+
+#### onVideoReload : 
+
+#### onVideoFastFordward : 
+
+#### onVideoFastBackward : 
+
+#### onVideoEnd : 
+
+#### onVideoProgress : 
+
+#### onVideoError : 
+
+#### onVideoLoadStart : 
+
+#### videoProgressOnThumbSlide : 
+
+#### volumeOnSlide
+
+
