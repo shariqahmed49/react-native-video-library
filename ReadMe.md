@@ -20,6 +20,19 @@ ___
 https://user-images.githubusercontent.com/33158163/121813897-d0c4a200-cc8b-11eb-9c2a-4d26c771db99.mp4
 
 
+![Screenshot-1](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-1.png?raw=true) 
+
+![Screenshot-2](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-2.png?raw=true)
+
+![Screenshot-3](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-3.png?raw=true)
+
+![Screenshot-4](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-4.png?raw=true)
+
+![Screenshot-5](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-5.png?raw=true)
+
+![Screenshot-6](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-6.png?raw=true)
+
+
 ### Changelogs : 
 - [ v 1.0.0 ]
     - React Native Video Libaray deployment.
