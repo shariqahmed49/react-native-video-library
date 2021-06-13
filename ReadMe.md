@@ -19,6 +19,9 @@ ___
 
 https://user-images.githubusercontent.com/33158163/121813897-d0c4a200-cc8b-11eb-9c2a-4d26c771db99.mp4
 
+![Screenshot-1](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-1%20(2).png?raw=true)
+
+![Screenshot-2](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-2%20(1).png?raw=true)
 
 ![Screenshot-1](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-1.png?raw=true) 
 
