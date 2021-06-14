@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 const { width } = Dimensions.get('window')
 const height = width * .5625
 
-export default class VideoPlayer extends Component {
+class VideoPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -943,3 +943,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 4
     }
 });
+
+module.exports = {
+    VideoPlayer: VideoPlayer,
+}
