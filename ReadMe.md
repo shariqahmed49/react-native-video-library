@@ -86,120 +86,1729 @@ import { VideoPlayer } from 'react-native-video-library'
 |39|[volumeOverlayOpacity](#volumeOverlayOpacity-)|Number|No|0.7|
 
 ### Callback/Methods :
-|Sl. No| Name | Type |Required| Value
-|-|-|-|-|-|
-|1|[onVideoPlay](#onVideoPlay-)|Function|-|(time) => ()|
-|2|[onVideoPause](#onVideoPause-)|Function|-|(time) => ()|
-|3|[onVideoReload](#onVideoReload-)|Function|-|(time) => ()|
-|4|[onVideoFastFordward](#onVideoFastFordward-)|Function|-|(time) => ()|
-|5|[onVideoFastBackward](#onVideoFastBackward-)|Function|-|(time) => ()|
-|6|[onVideoEnd](#onVideoEnd-)|Function|-|(time) => ()|
-|7|[onVideoProgress](#onVideoProgress-)|Function|-|(videoObj, time) => ()|
-|8|[onVideoError](#onVideoError-)|Function|-|(errorObject) => ()|
-|9|[onVideoLoadStart](#onVideoLoadStart-)|Function|-|(VideoLoadStartObject) => ()|
-|10|[videoProgressOnThumbSlide](#videoProgressOnThumbSlide-)|Function|-|(time) => ()|
-|11|[volumeOnSlide](#volumeOnSlide-)|Function|-|(volume) => ()|
-
+|Sl. No| Name | Type |Required| Value| Description |
+|-|-|-|-|-|-|
+|1|onVideoPlay|Function|-|(time) => ()|This fuction is called when the user taps on the play button. It returns a ``time`` argument that has the actual value/position of the video being played. |
+|2|onVideoPause|Function|-|(time) => ()| This function is called when the user taps on the pause button. It returns a ``time`` argument that has the actual value/position when the video is paused |
+|3|onVideoReload|Function|-|(time) => ()| Callback function that returns the ``time`` duration whenever the reload button is clicked after the end of video |
+|4|onVideoFastFordward|Function|-|(time) => ()| This function is called when the user taps on the fast-forward icon. It returns a ``time`` arugument that has the actual value/position of the video being played. |
+|5|onVideoFastBackward|Function|-|(time) => ()| This function is called when the user taps on the fast-backward icon. It returns a ``time`` arugument that has the actual value/position of the video being played. |
+|6|onVideoEnd|Function|-|(time) => ()| This function is called at the end of video. It returns a ``time`` arugument that has the actual length of the video. |
+|7|onVideoProgress|Function|-|(videoObj, time) => ()| "This function is called whenever the video is being played or rendered. It returns two arguments named ``videoObj`` & ``time``. * ``videoObj`` : Refer this link https://github.com/react-native-video/react-native-video#onprogress* ``time`` : It returns the present position of the video being played in time." |
+|8|onVideoError|Function|-|(errorObject) => ()| "This function is called whenever the video can not be loaded due to network or any other issues. It returns an error object." |
+|9|onVideoLoadStart|Function|-|(VideoLoadStartObject) => ()| "This callback function is called when the media starts loading. For more details please refer the following link : https://github.com/react-native-video/react-native-video#source" |
+|10|videoProgressOnThumbSlide|Function|-|(time) => ()| This prop returns a time argument when the video progress-bar thumb(track ball) is moved/slided to the desired position. |
+|11|volumeOnSlide|Function|-|(volume) => ()| Whenever the the volume track bar ball is moved/slided for the change of volume, then this function is called |
 
 ### Description with Examples :
 #### videoTitle :
+>>>It is used to display the title of the video.
+
+```
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"} // Video Title
+          videoTitleStyle={styles.videoTitleStyles}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }}
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoTitleStyle :
+>>> It is used to add styles to the video title text-field.
+```
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles} // Video Title Styles
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }}
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoThumbnailImg : 
+>>> This prop accepts either a remote URL or a local file resource. This prop is used to add an Image(Thumbnail) at the start of the video.
+
+>>> Asset Loaded via require:
+Example:
+const bunny = require('./bigBunny.png');
+videoThumbnailImg={bunny}
+
+>>> URI string:
+A number of URI schemes are supported by passing an object with a uri attribute.
+Example:
+Local File Path
+videoThumbnailImg={{ uri: 'file:///sdcard/photos/bigBunny.png' }}
+
+>>>Remote URL:
+videoThumbnailImg={{uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }}
+
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail Image
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoSource : 
+>>> This prop is used to set the media source. You can pass an asset loaded via require or an object with URI.
+
+>>> Asset Loaded via require:
+Example:
+const sintel = require('./sintel.mp4');
+videosSource={sintel}
+
+>>> URI string:
+A number of URI schemes are supported by passing an object with a uri attribute.
+
+>>> Example:
+Local File Path
+videoSource={{ uri: 'file:///sdcard/Movies/sintel.mp4' }}
+
+>>> Remote URL:
+videoSource={{uri: 'https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4' }}
+
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }} // Video Source
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoWidth : 
+>>> It is used to set the width of the video component.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width} // Video Width
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }}
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoHeight : 
+>>> It is used to set the height of the video component.
+This prop is optional. Based on the passed videoWidth value videoHeigth will be set."
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240} // Video Height
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoLoadingBackgroundColor : 
+>>> This prop is used to set the background color of the video player when the onVideoLoad prop is called.
+
+>>> The backgorund color will be removed when the video is loaded successfully.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'} // Video Loading background color 
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoLoadingBackgroundOpacity : 
+>>> This prop is used to set the opacity of the background color.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'}
+          videoLoadingBackgroundOpacity={0.65} // Video Loading Background Opacity
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoLoadingSpinnerColor : 
+>>> This props is used to set the color of the spinner.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'}
+          videoLoadingBackgroundOpacity={0.65}
+          videoLoadingSpinnerColor={'red'} // Video Loading Spinner Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoLoadingSpinnerSize : 
+>>> This prop is used to set the size of the spinner.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'}
+          videoLoadingBackgroundOpacity={0.65}
+          videoLoadingSpinnerColor={'red'}
+          videoLoadingSpinnerSize={'large'} // Video Loading Spinner Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoErrorIconSize : 
+>>> This prop is used to set the size of the video error icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'}
+          videoLoadingBackgroundOpacity={0.65}
+          videoLoadingSpinnerColor={'red'}
+          videoLoadingSpinnerSize={'large'}
+          videoErrorIconSize={25} // Video Error Icon Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoErrorIconColor : 
+>>> This prop is used to set the color of the video error icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'}
+          videoLoadingBackgroundOpacity={0.65}
+          videoLoadingSpinnerColor={'red'}
+          videoLoadingSpinnerSize={'large'}
+          videoErrorIconSize={25}
+          videoErrorIconColor={'red'} // Video Error Icon Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+})
+```
 
 #### videoErrorTextStyles : 
+>>> This prop is used to set the styles for the video error text field.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'}
+          videoLoadingBackgroundOpacity={0.65}
+          videoLoadingSpinnerColor={'red'}
+          videoLoadingSpinnerSize={'large'}
+          videoErrorIconSize={25}
+          videoErrorIconColor={'red'}
+          videoErrorTextStyles={styles.errorTextStyles} // Video Error Text Styles
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+    errorTextStyles: { fontSize:14, color:'white', fontWeight:'bold'}
+})
+```
 
 #### videoErrorText : 
+>>> This prop is used to display an error text whenever the inital video load fails due to network connectivity or other issues.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoHeight={240}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+          videoLoadingBackgroundColor={'grey'}
+          videoLoadingBackgroundOpacity={0.65}
+          videoLoadingSpinnerColor={'red'}
+          videoLoadingSpinnerSize={'large'}
+          videoErrorIconSize={25}
+          videoErrorIconColor={'red'}
+          videoErrorTextStyles={styles.errorTextStyles}
+          videoErrorText={'Network Error, Please try again'} // Video Error Text
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' },
+    errorTextStyles: { fontSize:14, color:'white', fontWeight:'bold'}
+})
+```
 
 #### resumeVideoFrom : 
+>>> When this prop is set, it starts/resumes the video from the specified position. This props accepts the ``time`` in ``seconds``.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         resumeVideoFrom={120.23} // Resumes video from particular position.
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### fastForwardIconSize : 
+>>> This prop is used the set the size of the Fast-Forward Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         fastForwardIconSize={40} // Fast-Forward Icon Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### fastForwardIconColor : 
+>>> This prop is used the set the color of the Fast-Forward Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
 
-#### astForwardRate : 
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         fastForwardIconColor={'red'} // Fast-Forward Icon Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
+
+#### fastForwardRate : 
+>>> This prop is used to move forward the position of the video to the specified time.
+Example:
+Suppose a video is been played at a position of 0.35, then on-click of fastForwardIcon the position of the video will be moved to 0.39.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         fastForwardRate={4} // Fast Forward Rate (in Seconds)
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### fastBackwardIconSize : 
+>>> This props is used the set the size of the Fast-Backward Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         fastBackwardIconSize={40} // Fast Backward Icon Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### fastBackwardIconColor : 
+>>> This prop is used to set the color of the Fast-Backward Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         fastBackwardIconColor={'red'} // Fast Backward Icon Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### fastBackwardRate : 
+>>> "This prop is used to move backward the position of the video to the specified time.
+Example:
+Suppose a video is been played at a position of 0.35, then on-click of fastBackwardIcon the position of the video will be moved to 0.31. "
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         fastBackwardRate={4} // Fast Backward Rate (in seconds)
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### pauseIconSize :
+>>> This prop is used to set the size of the Pause Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         pauseIconSize={45} //Pause Icon Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### pauseIconColor : 
+>>> 
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         pauseIconSize={45}
+         pauseIconColor={'red'} // Pause Icon Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### reloadIconSize : 
+>>> This prop is used to set the size of the reoload Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         reloadIconSize={45} // Reload Icon Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### reloadIconColor : 
+>>> This prop is used to set the color of the Pause Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         reloadIconSize={45}
+         reloadIconSize={'red'} // Reload Icon Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### playIconSize : 
+>>> This prop is used to set the size of the Play Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         playIconSize={45} // Play Icon Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### playIconColor :
+>>> This prop is used to set the color of the Pause Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         playIconSize={45}
+         playIconColor={'red'} // Play Icon Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeIconSize : 
+>>> This prop is used to set the size of the Volume Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeIconSize={23} // Volume Icon Size
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeIconColor : 
+>>> This prop is used to set the color of the Volume Icon.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeIconSize={23}
+         volumeIconColor={'white'} // Volume Icon Color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### videoProgressMaximumTrackTintColor : 
+>>> The color used for the video progress-bar track to the right of the button.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         videoProgressMaximumTrackTintColor={'grey'} // Video Progress Max track color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### videoProgressMinimumTrackTintColor : 
+>>> The color used for the video progress-bar track to the left of the button.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         videoProgressMinimumTrackTintColor={'red'} // Video Progress Min track color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### videoProgressThumbTintColor : 
+>>> The color used for the thumb(slider ball)
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
 
-#### volumeMaximumTrackTintColor : 
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         videoProgressThumbTintColor={'red'} // Video Progress Thumb(track ball) color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
+
+#### volumeMaximumTrackTintColor :
+>>> The color used for the volume track to the right of the button.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeMaximumTrackTintColor={'grey'} // Volume max tint color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeMinimumTrackTintColor : 
+>>> The color used for the volume track to the left of the button.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeMinimumTrackTintColor={'red'} // Volume min tint color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeThumbTintColor : 
+>>> The color used for the thumb(slider ball)
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeThumbTintColor={'red'} // Volume thumb(track ball) color
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeSliderWidth : 
+>>> Width of the volume track
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeSliderWidth={80} // Width of the volume slider
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeOverlayWidth : 
+>>> Width of the volume overlay. 
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeOverlayWidth={300} // Width of the volume overlay
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeOverlayBackgroundColor : 
+>>> This prop is used to set the background color of the volume overlay.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
+
+const { width } = Dimensions.get('window')
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeOverlayBackgroundColor={'black'} // Background color for volume overlay
+        />
+      </View>
+    );
+  }
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
 #### volumeOverlayOpacity : 
+>>> This prop is used to set the opacity of the  background color of the volume overlay.
+```javascript
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer/videoPlayer';
 
-#### onVideoPlay : 
+const { width } = Dimensions.get('window')
 
-#### onVideoPause : 
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.textStyles}>
+            React Native Video Library
+          </Text>
+        </View>
+        <VideoPlayer
+          videoTitle={"Big Bug Bunny"}
+          videoTitleStyle={styles.videoTitleStyles}
+          videoWidth={width}
+          videoThumbnailImg={{ uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }} // Video Thumbnail
+          videoSource={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+         volumeOverlayBackgroundColor={'black'}
+         volumeOverlayOpacity={0.5} // Opacity for the volume overlay
+        />
+      </View>
+    );
+  }
+}
+export default App;
 
-#### onVideoReload : 
-
-#### onVideoFastFordward : 
-
-#### onVideoFastBackward : 
-
-#### onVideoEnd : 
-
-#### onVideoProgress : 
-
-#### onVideoError : 
-
-#### onVideoLoadStart : 
-
-#### videoProgressOnThumbSlide : 
-
-#### volumeOnSlide
-
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'center' },
+    textStyles: { textAlign: 'center', fontSize: 17, fontWeight: 'bold',paddingBottom:25 },
+    videoTitleStyles: { fontSize: 15, color: 'white', fontWeight: 'bold' }
+})
+```
 
