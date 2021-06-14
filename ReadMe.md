@@ -103,7 +103,7 @@ import { VideoPlayer } from 'react-native-video-library'
 ### Description with Examples :
 #### videoTitle :
 
->>> It is used to display the title of the video.
+> It is used to display the title of the video.
 
 ```
 import React, { Component } from 'react';
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoTitleStyle :
->>> It is used to add styles to the video title text-field.
+> It is used to add styles to the video title text-field.
 ```
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoThumbnailImg : 
->>> This prop accepts either a remote URL or a local file resource. This prop is used to add an Image(Thumbnail) at the start of the video.
+> This prop accepts either a remote URL or a local file resource. This prop is used to add an Image(Thumbnail) at the start of the video.
 
 >>> Asset Loaded via require:
 Example:
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoSource : 
->>> This prop is used to set the media source. You can pass an asset loaded via require or an object with URI.
+> This prop is used to set the media source. You can pass an asset loaded via require or an object with URI.
 
 >>> Asset Loaded via require:
 Example:
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoWidth : 
->>> It is used to set the width of the video component.
+> It is used to set the width of the video component.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoHeight : 
->>> It is used to set the height of the video component.
+> It is used to set the height of the video component.
 This prop is optional. Based on the passed videoWidth value videoHeigth will be set."
 ```javascript
 import React, { Component } from 'react';
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoLoadingBackgroundColor : 
->>> This prop is used to set the background color of the video player when the onVideoLoad prop is called.
+> This prop is used to set the background color of the video player when the onVideoLoad prop is called.
 
 >>> The backgorund color will be removed when the video is loaded successfully.
 ```javascript
@@ -424,7 +424,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoLoadingBackgroundOpacity : 
->>> This prop is used to set the opacity of the background color.
+> This prop is used to set the opacity of the background color.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -468,7 +468,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoLoadingSpinnerColor : 
->>> This props is used to set the color of the spinner.
+> This props is used to set the color of the spinner.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -513,7 +513,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoLoadingSpinnerSize : 
->>> This prop is used to set the size of the spinner.
+> This prop is used to set the size of the spinner.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -559,7 +559,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoErrorIconSize : 
->>> This prop is used to set the size of the video error icon.
+> This prop is used to set the size of the video error icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -606,7 +606,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoErrorIconColor : 
->>> This prop is used to set the color of the video error icon.
+> This prop is used to set the color of the video error icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -654,7 +654,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoErrorTextStyles : 
->>> This prop is used to set the styles for the video error text field.
+> This prop is used to set the styles for the video error text field.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -704,7 +704,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoErrorText : 
->>> This prop is used to display an error text whenever the inital video load fails due to network connectivity or other issues.
+> This prop is used to display an error text whenever the inital video load fails due to network connectivity or other issues.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -755,7 +755,7 @@ const styles = StyleSheet.create({
 ```
 
 #### resumeVideoFrom : 
->>> When this prop is set, it starts/resumes the video from the specified position. This props accepts the ``time`` in ``seconds``.
+> When this prop is set, it starts/resumes the video from the specified position. This props accepts the ``time`` in ``seconds``.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -797,7 +797,7 @@ const styles = StyleSheet.create({
 ```
 
 #### fastForwardIconSize : 
->>> This prop is used the set the size of the Fast-Forward Icon.
+> This prop is used the set the size of the Fast-Forward Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -839,7 +839,7 @@ const styles = StyleSheet.create({
 ```
 
 #### fastForwardIconColor : 
->>> This prop is used the set the color of the Fast-Forward Icon.
+> This prop is used the set the color of the Fast-Forward Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -881,7 +881,7 @@ const styles = StyleSheet.create({
 ```
 
 #### fastForwardRate : 
->>> This prop is used to move forward the position of the video to the specified time.
+> This prop is used to move forward the position of the video to the specified time.
 Example:
 Suppose a video is been played at a position of 0.35, then on-click of fastForwardIcon the position of the video will be moved to 0.39.
 ```javascript
@@ -925,7 +925,7 @@ const styles = StyleSheet.create({
 ```
 
 #### fastBackwardIconSize : 
->>> This props is used the set the size of the Fast-Backward Icon.
+> This props is used the set the size of the Fast-Backward Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -967,7 +967,7 @@ const styles = StyleSheet.create({
 ```
 
 #### fastBackwardIconColor : 
->>> This prop is used to set the color of the Fast-Backward Icon.
+> This prop is used to set the color of the Fast-Backward Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1009,9 +1009,9 @@ const styles = StyleSheet.create({
 ```
 
 #### fastBackwardRate : 
->>> "This prop is used to move backward the position of the video to the specified time.
+> This prop is used to move backward the position of the video to the specified time.
 Example:
-Suppose a video is been played at a position of 0.35, then on-click of fastBackwardIcon the position of the video will be moved to 0.31. "
+Suppose a video is been played at a position of 0.35, then on-click of fastBackwardIcon the position of the video will be moved to 0.31.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1053,7 +1053,7 @@ const styles = StyleSheet.create({
 ```
 
 #### pauseIconSize :
->>> This prop is used to set the size of the Pause Icon.
+> This prop is used to set the size of the Pause Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1095,7 +1095,7 @@ const styles = StyleSheet.create({
 ```
 
 #### pauseIconColor : 
->>> 
+> This prop is used to set the color of the Pause Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1138,7 +1138,7 @@ const styles = StyleSheet.create({
 ```
 
 #### reloadIconSize : 
->>> This prop is used to set the size of the reoload Icon.
+> This prop is used to set the size of the reoload Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1180,7 +1180,7 @@ const styles = StyleSheet.create({
 ```
 
 #### reloadIconColor : 
->>> This prop is used to set the color of the Pause Icon.
+> This prop is used to set the color of the Pause Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1223,7 +1223,7 @@ const styles = StyleSheet.create({
 ```
 
 #### playIconSize : 
->>> This prop is used to set the size of the Play Icon.
+> This prop is used to set the size of the Play Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1265,7 +1265,7 @@ const styles = StyleSheet.create({
 ```
 
 #### playIconColor :
->>> This prop is used to set the color of the Pause Icon.
+> This prop is used to set the color of the Pause Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1308,7 +1308,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeIconSize : 
->>> This prop is used to set the size of the Volume Icon.
+> This prop is used to set the size of the Volume Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1350,7 +1350,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeIconColor : 
->>> This prop is used to set the color of the Volume Icon.
+> This prop is used to set the color of the Volume Icon.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1393,7 +1393,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoProgressMaximumTrackTintColor : 
->>> The color used for the video progress-bar track to the right of the button.
+> The color used for the video progress-bar track to the right of the button.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1435,7 +1435,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoProgressMinimumTrackTintColor : 
->>> The color used for the video progress-bar track to the left of the button.
+> The color used for the video progress-bar track to the left of the button.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1477,7 +1477,7 @@ const styles = StyleSheet.create({
 ```
 
 #### videoProgressThumbTintColor : 
->>> The color used for the thumb(slider ball)
+> The color used for the thumb(slider ball)
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1519,7 +1519,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeMaximumTrackTintColor :
->>> The color used for the volume track to the right of the button.
+> The color used for the volume track to the right of the button.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1561,7 +1561,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeMinimumTrackTintColor : 
->>> The color used for the volume track to the left of the button.
+> The color used for the volume track to the left of the button.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1603,7 +1603,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeThumbTintColor : 
->>> The color used for the thumb(slider ball)
+> The color used for the thumb(slider ball)
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1645,7 +1645,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeSliderWidth : 
->>> Width of the volume track
+> Width of the volume track
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1687,7 +1687,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeOverlayWidth : 
->>> Width of the volume overlay. 
+> Width of the volume overlay. 
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1729,7 +1729,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeOverlayBackgroundColor : 
->>> This prop is used to set the background color of the volume overlay.
+> This prop is used to set the background color of the volume overlay.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
@@ -1771,7 +1771,7 @@ const styles = StyleSheet.create({
 ```
 
 #### volumeOverlayOpacity : 
->>> This prop is used to set the opacity of the  background color of the volume overlay.
+> This prop is used to set the opacity of the  background color of the volume overlay.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
