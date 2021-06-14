@@ -102,7 +102,8 @@ import { VideoPlayer } from 'react-native-video-library'
 
 ### Description with Examples :
 #### videoTitle :
->>>It is used to display the title of the video.
+
+>>> It is used to display the title of the video.
 
 ```
 import React, { Component } from 'react';
