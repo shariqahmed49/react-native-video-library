@@ -186,18 +186,18 @@ const styles = StyleSheet.create({
 #### videoThumbnailImg : 
 > This prop accepts either a remote URL or a local file resource. This prop is used to add an Image(Thumbnail) at the start of the video.
 
->>> Asset Loaded via require:
+> Asset Loaded via require:
 Example:
 const bunny = require('./bigBunny.png');
 videoThumbnailImg={bunny}
 
->>> URI string:
+> URI string:
 A number of URI schemes are supported by passing an object with a uri attribute.
 Example:
 Local File Path
 videoThumbnailImg={{ uri: 'file:///sdcard/photos/bigBunny.png' }}
 
->>>Remote URL:
+> Remote URL:
 videoThumbnailImg={{uri: 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg' }}
 
 ```javascript
@@ -241,19 +241,19 @@ const styles = StyleSheet.create({
 #### videoSource : 
 > This prop is used to set the media source. You can pass an asset loaded via require or an object with URI.
 
->>> Asset Loaded via require:
+> Asset Loaded via require:
 Example:
 const sintel = require('./sintel.mp4');
 videosSource={sintel}
 
->>> URI string:
+> URI string:
 A number of URI schemes are supported by passing an object with a uri attribute.
 
->>> Example:
+> Example:
 Local File Path
 videoSource={{ uri: 'file:///sdcard/Movies/sintel.mp4' }}
 
->>> Remote URL:
+> Remote URL:
 videoSource={{uri: 'https://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4' }}
 
 ```javascript
@@ -381,7 +381,7 @@ const styles = StyleSheet.create({
 #### videoLoadingBackgroundColor : 
 > This prop is used to set the background color of the video player when the onVideoLoad prop is called.
 
->>> The backgorund color will be removed when the video is loaded successfully.
+> The backgorund color will be removed when the video is loaded successfully.
 ```javascript
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
