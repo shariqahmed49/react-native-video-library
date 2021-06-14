@@ -27,7 +27,9 @@ https://user-images.githubusercontent.com/33158163/121813897-d0c4a200-cc8b-11eb-
 ![Screenshot-6](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Screenshot-6(360*720).png?raw=true)
 
 ### Changelogs : 
-- [ v 1.0.0 ]
+- [ v 1.0.2 ]
+    - Documentation update.
+- [ v 1.0.1 ]
     - React Native Video Libaray deployment.
 
 ### Installation :
