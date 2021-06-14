@@ -1,0 +1,5 @@
+[comment]: <> (For GitHub)
+https://user-images.githubusercontent.com/33158163/121813897-d0c4a200-cc8b-11eb-9c2a-4d26c771db99.mp4
+
+[comment]: <> (For npm)
+[![Watch the video](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Sample_Video_SS.png?raw=true)](https://drive.google.com/file/d/1vewVe9M3OxMZdAouawdyU0-x7kp_g1Ip/view)
