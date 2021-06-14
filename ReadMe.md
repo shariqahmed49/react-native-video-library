@@ -1,9 +1,9 @@
 # React Native Video Library
 ___
 
-[![npm version](https://img.shields.io/badge/npm%20package-1.0.4-green)](//npmjs.com/package/react-native-video-library)  ![platform support](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-orange)
+[![npm version](https://img.shields.io/badge/npm%20package-1.0.5-green)](//npmjs.com/package/react-native-video-library)  ![platform support](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-orange)
 
-> A hight customized video component for React Native that has rich set of features. It enables the developers to customize the components as per the requirements.
+> A highly customized video component for React Native that has a rich set of features. It enables the developers to customize the component as per the requirements.
 
 ### Features :
 - Video thumbnail at the start of the video.
