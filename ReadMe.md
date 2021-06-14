@@ -101,6 +101,17 @@ import { VideoPlayer } from 'react-native-video-library'
 |11|volumeOnSlide|Function|-|(volume) => ()| Whenever the the volume track bar ball is moved/slided for the change of volume, then this function is called |
 
 ### Description with Examples :
+
+![Example-1](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Example-1(360*720).png?raw=true)
+
+![Example-2](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Example-2(360*720).png?raw=true)
+
+![Example-3](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Example-3(360*720).png?raw=true)
+
+![Example-4](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Example-4(360*720).png?raw=true)
+
+![Example-5](https://github.com/shariqahmed49/react-native-video-library/blob/master/assets/Example-5(360*720).png?raw=true)
+
 #### videoTitle :
 
 > It is used to display the title of the video.
